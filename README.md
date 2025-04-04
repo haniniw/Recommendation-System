@@ -1,4 +1,4 @@
-# Machine Learning Terapan: Model Sistem Rekomendasi Musik dan Podcast pada Aplikasi Spotify
+# Recommendation System: Model Sistem Rekomendasi Musik dan Podcast pada Aplikasi Spotify
 Oleh: Noer Hanifah Suganda
 ---
 **Project Overview**
