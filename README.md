@@ -107,11 +107,17 @@ Berikut adalah kolom-kolom yang digunakan pada masing-masing dataset
 
 **Exploratory Data Analysis (EDA) Musik**
 
-Visualisasi & Analisis Univariate pada atribut age, gender, genre musik favorit, rating rekomendasi:
+Visualisasi & Analisis Univariate pada atribut age, gender, genre musik favorit, rating rekomendasi, dan frekuensi mendengarkan:
 
-![image](https://github.com/user-attachments/assets/5aa64e69-9f2e-4e42-ada1-e624eb7f9501)
+![image](https://github.com/user-attachments/assets/d640a62a-b964-4e06-9fd2-ca781bff8077)
 
-![image](https://github.com/user-attachments/assets/b0c49180-d025-4439-9003-44ae462bc9aa)
+![image](https://github.com/user-attachments/assets/71b78c70-ca58-4d42-9169-bda4d9d2d408)
+
+![image](https://github.com/user-attachments/assets/b83c2b5b-15d0-4e29-9717-e863c4dcf983)
+
+![image](https://github.com/user-attachments/assets/65ba0522-7ae4-430d-a3a4-880a5f15ebac)
+
+![image](https://github.com/user-attachments/assets/cdaadb05-58ab-4889-903b-d56dfa766c8a)
 
 **Exploratory Data Analysis (EDA) Podcast**
 
@@ -122,6 +128,7 @@ Visualisasi & Analisis Univariate pada atribut age, gender, genre podcast favori
 ![image](https://github.com/user-attachments/assets/5a0125b9-e341-497d-afb6-efab79da5c34)
 
 ![image](https://github.com/user-attachments/assets/68c4ebec-c3d6-4aed-87cb-1b42fb6809a9)
+
 
 **Multivariate EDA Music**
 
