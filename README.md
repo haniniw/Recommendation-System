@@ -157,3 +157,47 @@ p-value: 0.039994571314622494
 
 ![image](https://github.com/user-attachments/assets/2d4a2f83-34d3-4c50-b742-46862dda39a1)
 Dari hasil ANOVA, nilai p-value (PR(>F)) = 0.176351 menunjukkan bahwa tidak ada hubungan yang signifikan antara preferred podcast duration dan listening frequency pada tingkat signifikansi 0.05 (atau 5%).
+
+# **D. Data Preparation**
+
+**Encoding Data Kategorikal**
+mengubah data kategorikal (genre) menjadi angka.
+
+**Normalisasi Data Numerik**
+
+# E. Modelling
+
+
+**Membentuk Feature Vector**
+Menggabungkan semua nilai fitur kategorikal menjadi satu string per baris.
+Digunakan sebagai representasi profil item (lagu/podcast) yang akan dibandingkan antar item.
+
+**Jaccard Similarity**
+menghitung seberapa mirip dua item berdasarkan fitur kategorikal.
+Output: matriks kemiripan antar item (lagu ke lagu / podcast ke podcast).
+
+**Fungsi Rekomendasi top-N**
+
+# F. EVALUASI 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
