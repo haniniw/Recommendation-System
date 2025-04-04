@@ -54,11 +54,10 @@ Sumber: https://www.kaggle.com/code/arvindkhoda/spotify-user-behavior-dataset
 
 Dataset ini memiliki 520 baris data dan 20 kolom. Berikut adalah deskripsi masing-masing kolom:
 
-Age – Kelompok usia pengguna.
+1. Age – Kelompok usia pengguna.
+2. Gender – Jenis kelamin pengguna.
 
-Gender – Jenis kelamin pengguna.
-
-spotify_usage_period – Lama waktu penggunaan Spotify.
+3. spotify_usage_period – Lama waktu penggunaan Spotify.
 
 spotify_listening_device – Perangkat utama yang digunakan untuk mendengarkan Spotify.
 
@@ -96,33 +95,33 @@ pod_variety_satisfaction – Tingkat kepuasan terhadap variasi dan ketersediaan 
 
 **Kondisi Data**
 
-Duplikasi: Terdapat 1 baris duplikat yang dihapus.
-Missing Values: 
-Age: Terdapat 4 nilai yang hilang.
+- Duplikasi: Terdapat 1 baris duplikat yang dihapus.
+- Missing Values: 
+  Age: Terdapat 4 nilai yang hilang.
+  preffered_premium_plan: Terdapat 207 nilai yang hilang.
+  fav_pod_genre: Terdapat 147 nilai yang hilang.
+  preffered_pod_format: Terdapat 139 nilai yang hilang.
+  pod_host_preference: Terdapat 140 nilai yang hilang.
+  preffered_pod_duration: Terdapat 128 nilai yang hilang.
 
-preffered_premium_plan: Terdapat 207 nilai yang hilang.
+  Karena baris yang mempunyai missing value terlalu banyak, dan tidak semua variabel akan digunakan, maka saya tidak akan menghapus missing values dari variabel preffered_premium_plan yang tidak relevan dalam menjawab goals agar data yang berkurang tidak terlalu banyak.
 
-fav_pod_genre: Terdapat 147 nilai yang hilang.
+- Tipe Data: Sebagian besar kolom bertipe object yang mengandung nilai kategorikal dengan jumlah kategori yang terbatas, saya mengubahnya ke tipe data category supaya meningkatkan efisiensi memori dan mempermudah analisis.
 
-preffered_pod_format: Terdapat 139 nilai yang hilang.
-
-pod_host_preference: Terdapat 140 nilai yang hilang.
-
-preffered_pod_duration: Terdapat 128 nilai yang hilang.
-
-Karena terdapat baris yang hilang terlalu banyak, dan tidak semua variabel akan digunakan, maka saya tidak akan menghapus missing values dari variabel preffered_premium_plan yang tidak relevan dalam menjawab goals agar data yang berkurang tidak terlalu banyak.
-
-Tipe Data: Sebagian besar kolom bertipe object yang mengandung nilai kategorikal dengan jumlah kategori yang terbatas, saya mengubahnya ke tipe data category guna meningkatkan efisiensi memori dan mempermudah analisis.
-
-Outliers: Tidak dilakukan penanganan outliers karena tipe data kategorik dan kolom numerik hanya satu, yaitu music_recc_rating yang hanya direntang 1-5 berguna untuk kebutuhan sistem rekomendasi data.
+- Outliers: Tidak dilakukan penanganan outliers karena tipe data kategorik dan kolom numerik hanya satu, yaitu music_recc_rating yang hanya direntang 1-5 akan berguna untuk kebutuhan sistem rekomendasi data.
 
 **Membagi Dataset Rekomendasi Musik dan Rekomendasi Podcast**
 
 Sesuai dengan goals untuk mengembangkan rekomendasi musik dan podcast, dataset dibuat secara terpisah dengan masing-masing isi kolom yang relevan berdasarkan kebutuhan.
+
 Berikut adalah kolom-kolom yang digunakan pada masing-masing dataset
+
+**Dataset musik**
 ![image](https://github.com/user-attachments/assets/6c445560-e3c5-44b4-9876-9c5776459877)
 
+**Dataset podcast**
 ![image](https://github.com/user-attachments/assets/3dbd665f-0afb-49fc-8105-09f7ef8055f4)
+
 
 **Exploratory Data Analysis (EDA) Musik**
 
@@ -151,6 +150,7 @@ Visualisasi & Analisis Univariate pada atribut age, gender, genre podcast favori
 **Multivariate EDA Podcast**
 
 ![image](https://github.com/user-attachments/assets/cda246fa-1941-4c44-b8b7-400a8fe005ac)
+
 Chi-square statistic: 25.81665230286194
 p-value: 0.039994571314622494
 ✅ Ada hubungan yang signifikan antara Genre dan Format Podcast.
