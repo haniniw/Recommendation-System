@@ -142,9 +142,13 @@ Visualisasi & Analisis Univariate pada atribut age, gender, genre podcast favori
 
 ![image](https://github.com/user-attachments/assets/68c4ebec-c3d6-4aed-87cb-1b42fb6809a9)
 
+**Multivariate EDA Music**
 
+![image](https://github.com/user-attachments/assets/ac75ad12-04ff-4d1c-be7b-cad87e198c47)
 
+![image](https://github.com/user-attachments/assets/34909cb2-5b6e-495e-a036-c84611a68b04)
 
+**Multivariate EDA Podcast**
 
-
+![image](https://github.com/user-attachments/assets/2d4a2f83-34d3-4c50-b742-46862dda39a1)
 
