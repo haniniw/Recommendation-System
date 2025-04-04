@@ -56,18 +56,11 @@ Dataset ini memiliki 520 baris data dan 20 kolom. Berikut adalah deskripsi masin
 
 1. Age – Kelompok usia pengguna.
 2. Gender – Jenis kelamin pengguna.
-
 3. spotify_usage_period – Lama waktu penggunaan Spotify.
-
-spotify_listening_device – Perangkat utama yang digunakan untuk mendengarkan Spotify.
-
-spotify_subscription_plan – Jenis paket langganan Spotify yang digunakan.
-
-premium_sub_willingness – Kesediaan pengguna untuk berlangganan premium.
-
-preffered_premium_plan – Paket premium yang diinginkan pengguna (jika ada).
-
-preferred_listening_content – Jenis konten utama yang sering didengarkan (musik/podcast).
+4. spotify_listening_device – Perangkat utama yang digunakan untuk mendengarkan Spotify.
+5. spotify_subscription_plan – Jenis paket langganan Spotify yang digunakan.
+6. premium_sub_willingness – Kesediaan pengguna untuk berlangganan premium.
+7. preffered_premium_plan – Paket premium yang diinginkan pengguna (jika ada). 8. preferred_listening_content – Jenis konten utama yang sering didengarkan (musik/podcast).
 
 fav_music_genre – Genre musik favorit pengguna.
 
