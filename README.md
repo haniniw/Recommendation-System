@@ -128,27 +128,19 @@ Berikut adalah kolom-kolom yang digunakan pada masing-masing dataset
 
 Visualisasi & Analisis Univariate pada atribut age, gender, genre musik favorit, rating rekomendasi:
 
-![image](https://github.com/user-attachments/assets/d156e4e3-7933-4c19-9de9-6ca32166b58c)
+![image](https://github.com/user-attachments/assets/5aa64e69-9f2e-4e42-ada1-e624eb7f9501)
 
-![image](https://github.com/user-attachments/assets/eb406566-c616-492e-aa18-52c018008460)
-
-![image](https://github.com/user-attachments/assets/be2dfd09-56ff-45a6-908c-fdd5b0ea0271)
-
-![image](https://github.com/user-attachments/assets/9f227391-02fb-4ec2-8c52-3e814df66904)
+![image](https://github.com/user-attachments/assets/b0c49180-d025-4439-9003-44ae462bc9aa)
 
 **Exploratory Data Analysis (EDA) Podcast**
 
 Visualisasi & Analisis Univariate pada atribut age, gender, genre podcast favorit, format podcast favorit, dan rating kepuasan variasi podcast:
 
-![image](https://github.com/user-attachments/assets/faca23f0-4bcf-4b32-8c02-8e6334537dde)
+![image](https://github.com/user-attachments/assets/7c0db44c-70cb-4ebd-957f-91a10aaeccbf)
 
-![image](https://github.com/user-attachments/assets/c3d8a906-61c0-4f82-9c59-a7388581d4d8)
+![image](https://github.com/user-attachments/assets/5a0125b9-e341-497d-afb6-efab79da5c34)
 
-![image](https://github.com/user-attachments/assets/37ba326f-f697-42e5-9c29-bad2758f1673)
-
-![image](https://github.com/user-attachments/assets/d27509ef-7c9e-40df-b03a-9214df93453c)
-
-![image](https://github.com/user-attachments/assets/939fbf80-0b2c-4e8d-8288-59a4c1009caa)
+![image](https://github.com/user-attachments/assets/68c4ebec-c3d6-4aed-87cb-1b42fb6809a9)
 
 
 
