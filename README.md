@@ -150,5 +150,10 @@ Visualisasi & Analisis Univariate pada atribut age, gender, genre podcast favori
 
 **Multivariate EDA Podcast**
 
-![image](https://github.com/user-attachments/assets/2d4a2f83-34d3-4c50-b742-46862dda39a1)
+![image](https://github.com/user-attachments/assets/cda246fa-1941-4c44-b8b7-400a8fe005ac)
+Chi-square statistic: 25.81665230286194
+p-value: 0.039994571314622494
+✅ Ada hubungan yang signifikan antara Genre dan Format Podcast.
 
+![image](https://github.com/user-attachments/assets/2d4a2f83-34d3-4c50-b742-46862dda39a1)
+Dari hasil ANOVA, nilai p-value (PR(>F)) = 0.176351 menunjukkan bahwa tidak ada hubungan yang signifikan antara preferred podcast duration dan listening frequency pada tingkat signifikansi 0.05 (atau 5%).
