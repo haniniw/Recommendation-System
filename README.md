@@ -82,15 +82,15 @@ Dataset ini memiliki 520 baris data dan 20 kolom. Berikut adalah deskripsi masin
   - Age: Terdapat 4 nilai yang hilang.
   - preffered_premium_plan: Terdapat 207 nilai yang hilang.
   - fav_pod_genre: Terdapat 147 nilai yang hilang.
-  preffered_pod_format: Terdapat 139 nilai yang hilang.
-  pod_host_preference: Terdapat 140 nilai yang hilang.
-  preffered_pod_duration: Terdapat 128 nilai yang hilang.
+  - preffered_pod_format: Terdapat 139 nilai yang hilang.
+  - pod_host_preference: Terdapat 140 nilai yang hilang.
+  - preffered_pod_duration: Terdapat 128 nilai yang hilang.
 
   Karena baris yang mempunyai missing value terlalu banyak, dan tidak semua variabel akan digunakan, maka saya tidak akan menghapus missing values dari variabel preffered_premium_plan yang tidak relevan dalam menjawab goals agar data yang berkurang tidak terlalu banyak.
 
-- Tipe Data: Sebagian besar kolom bertipe object yang mengandung nilai kategorikal dengan jumlah kategori yang terbatas, saya mengubahnya ke tipe data category supaya meningkatkan efisiensi memori dan mempermudah analisis.
+- **Tipe Data:** Sebagian besar kolom bertipe object yang mengandung nilai kategorikal dengan jumlah kategori yang terbatas, saya mengubahnya ke tipe data category supaya meningkatkan efisiensi memori dan mempermudah analisis.
 
-- Outliers: Tidak dilakukan penanganan outliers karena tipe data kategorik dan kolom numerik hanya satu, yaitu music_recc_rating yang hanya direntang 1-5 akan berguna untuk kebutuhan sistem rekomendasi data.
+- **Outliers:** Tidak dilakukan penanganan outliers karena tipe data kategorik dan kolom numerik hanya satu, yaitu music_recc_rating yang hanya direntang 1-5 akan berguna untuk kebutuhan sistem rekomendasi data.
 
 **Membagi Dataset Rekomendasi Musik dan Rekomendasi Podcast**
 
@@ -132,13 +132,14 @@ Visualisasi & Analisis Univariate pada atribut age, gender, genre podcast favori
 **Multivariate EDA Podcast**
 
 ![image](https://github.com/user-attachments/assets/cda246fa-1941-4c44-b8b7-400a8fe005ac)
-
-Chi-square statistic: 25.81665230286194
-p-value: 0.039994571314622494
-✅ Ada hubungan yang signifikan antara Genre dan Format Podcast.
+Saya melakukan uji ch-square untuk melihat hubungan antara variabel genre dengan format podcast. Hasilnya diperoleh sebagai berikut:
+**Chi-square statistic: 25.81665230286194**
+**p-value: 0.039994571314622494**
+✅ Dapat disimpulkan ada hubungan yang signifikan antara Genre dan Format Podcast. Analisis ini saya jadikan acuan untuk menentukan atribut yang relevan untuk mengembangkan rekomendasi podcast.
 
 ![image](https://github.com/user-attachments/assets/2d4a2f83-34d3-4c50-b742-46862dda39a1)
-Dari hasil ANOVA, nilai p-value (PR(>F)) = 0.176351 menunjukkan bahwa tidak ada hubungan yang signifikan antara preferred podcast duration dan listening frequency pada tingkat signifikansi 0.05 (atau 5%).
+Saya melakukan analisis dengan atribut lainnya juga, salah satunya adalah atribut preferred podcast duration dengan listening frequency. Seperti penjelasan di bawah ini, hubungan antara kedua atribut tersebut kurang relevan.
+Dari hasil ANOVA, nilai **p-value (PR(>F)) = 0.176351** menunjukkan bahwa tidak ada hubungan yang signifikan antara preferred podcast duration dan listening frequency pada tingkat signifikansi **0.05 (atau 5%)** . Oleh karena itu, saya menjadikan hasil analisis ini sebagai acuan dalam memutuskan atribut yang akan digunakan pada rekomendasi podcast.
 
 # **D. Data Preparation**
 
