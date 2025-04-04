@@ -60,39 +60,28 @@ Dataset ini memiliki 520 baris data dan 20 kolom. Berikut adalah deskripsi masin
 4. spotify_listening_device – Perangkat utama yang digunakan untuk mendengarkan Spotify.
 5. spotify_subscription_plan – Jenis paket langganan Spotify yang digunakan.
 6. premium_sub_willingness – Kesediaan pengguna untuk berlangganan premium.
-7. preffered_premium_plan – Paket premium yang diinginkan pengguna (jika ada). 8. preferred_listening_content – Jenis konten utama yang sering didengarkan (musik/podcast).
-
-fav_music_genre – Genre musik favorit pengguna.
-
-music_time_slot – Waktu favorit untuk mendengarkan musik.
-
-music_Influencial_mood – Mood atau situasi yang memengaruhi pilihan musik.
-
-music_lis_frequency – Frekuensi mendengarkan musik.
-
-music_expl_method – Cara pengguna menemukan musik baru.
-
-music_recc_rating – Penilaian pengguna terhadap rekomendasi musik dari Spotify.
-
-pod_lis_frequency – Frekuensi mendengarkan podcast.
-
-fav_pod_genre – Genre podcast favorit pengguna.
-
-preffered_pod_format – Format podcast yang lebih disukai.
-
-pod_host_preference – Preferensi pengguna terhadap host podcast (terkenal atau tidak).
-
-preffered_pod_duration – Durasi podcast yang lebih disukai (pendek atau panjang).
-
-pod_variety_satisfaction – Tingkat kepuasan terhadap variasi dan ketersediaan podcast di Spotify
+7. preffered_premium_plan – Paket premium yang diinginkan pengguna (jika ada).
+8. preferred_listening_content – Jenis konten utama yang sering didengarkan (musik/podcast).
+9. fav_music_genre – Genre musik favorit pengguna.
+10. music_time_slot – Waktu favorit untuk mendengarkan musik.
+11. music_Influencial_mood – Mood atau situasi yang memengaruhi pilihan musik.
+12. music_lis_frequency – Frekuensi mendengarkan musik.
+13. music_expl_method – Cara pengguna menemukan musik baru.
+14. music_recc_rating – Penilaian pengguna terhadap rekomendasi musik dari Spotify.
+15. pod_lis_frequency – Frekuensi mendengarkan podcast.
+16. fav_pod_genre – Genre podcast favorit pengguna.
+17. preffered_pod_format – Format podcast yang lebih disukai.
+18. pod_host_preference – Preferensi pengguna terhadap host podcast (terkenal atau tidak).
+19. preffered_pod_duration – Durasi podcast yang lebih disukai (pendek atau panjang).
+20. pod_variety_satisfaction – Tingkat kepuasan terhadap variasi dan ketersediaan podcast di Spotify
 
 **Kondisi Data**
 
-- Duplikasi: Terdapat 1 baris duplikat yang dihapus.
-- Missing Values: 
-  Age: Terdapat 4 nilai yang hilang.
-  preffered_premium_plan: Terdapat 207 nilai yang hilang.
-  fav_pod_genre: Terdapat 147 nilai yang hilang.
+- **Duplikasi:** Terdapat 1 baris duplikat yang dihapus.
+- **Missing Values:** 
+  - Age: Terdapat 4 nilai yang hilang.
+  - preffered_premium_plan: Terdapat 207 nilai yang hilang.
+  - fav_pod_genre: Terdapat 147 nilai yang hilang.
   preffered_pod_format: Terdapat 139 nilai yang hilang.
   pod_host_preference: Terdapat 140 nilai yang hilang.
   preffered_pod_duration: Terdapat 128 nilai yang hilang.
