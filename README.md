@@ -99,10 +99,11 @@ Sesuai dengan goals untuk mengembangkan rekomendasi musik dan podcast, dataset d
 Berikut adalah kolom-kolom yang digunakan pada masing-masing dataset
 
 **Dataset musik**
-![image](https://github.com/user-attachments/assets/6c445560-e3c5-44b4-9876-9c5776459877)
+![image](https://github.com/user-attachments/assets/110dd753-2518-4154-87de-f9597ea1af11)
+
 
 **Dataset podcast**
-![image](https://github.com/user-attachments/assets/3dbd665f-0afb-49fc-8105-09f7ef8055f4)
+![image](https://github.com/user-attachments/assets/ccdb045f-6629-4715-a7b8-b0c451645a56)
 
 
 **Exploratory Data Analysis Univariate Musik**
@@ -161,6 +162,34 @@ Saya melakukan uji chi-square untuk melihat hubungan antara variabel mood dan ge
 **Chi-square statistic: 142.76147694959033
 p-value: 0.00043244726600508274**
 Ada hubungan signifikan antara mood dan genre musik.
+
+**Hasil uji analisis variabel lainnya:**
+
+**- Hubungan antara Age dan fav_music_genre**
+
+  **- Nilai Chi-Square = 15.774, p-value = 0.327**
+
+  **Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan genre musik favorit (karena p-value > 0.05). Ini menunjukkan bahwa preferensi genre musik cenderung tidak dipengaruhi oleh perbedaan usia dalam data ini.
+
+**- Hubungan antara Gender dan fav_music_genre**
+
+  **- Nilai Chi-Square = 32.560, p-value = 0.003**
+
+  **- Kesimpulan:** Terdapat hubungan yang signifikan antara jenis kelamin dan genre musik favorit (karena p-value < 0.05). Hal ini mengindikasikan bahwa preferensi genre musik cenderung bervariasi antar gender, dengan distribusi genre tertentu lebih dominan pada gender tertentu.
+
+**- Hubungan antara Age dan music_Influencial_mood**
+
+  **- Nilai Chi-Square = 39.603, p-value = 0.043**
+
+  **- Kesimpulan:** Terdapat hubungan yang signifikan antara kelompok usia dan suasana hati atau alasan emosional yang memengaruhi seseorang dalam mendengarkan musik. Artinya, motivasi emosional dalam mendengarkan musik (seperti relaksasi, motivasi, atau kesedihan) cenderung berbeda antar kelompok usia.
+
+**- Hubungan antara Age dan Gender**
+
+  **- Nilai Chi-Square = 8.120, p-value = 0.087**
+
+  **- Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan gender. 
+
+
 **Multivariate EDA Podcast**
 
 ![image](https://github.com/user-attachments/assets/cda246fa-1941-4c44-b8b7-400a8fe005ac)
@@ -175,38 +204,31 @@ Saya melakukan analisis dengan atribut lainnya juga, salah satunya adalah atribu
 
 Dari hasil ANOVA, nilai **p-value (PR(>F)) = 0.176351** menunjukkan bahwa tidak ada hubungan yang signifikan antara preferred podcast duration dan listening frequency pada tingkat signifikansi **0.05 (atau 5%)** . Oleh karena itu, saya menjadikan hasil analisis ini sebagai acuan dalam memutuskan atribut yang akan digunakan pada rekomendasi podcast.
 
-**Hasil uji analisis variabel lainnya:**
-
-**- Hubungan antara Age dan fav_music_genre**
-
-**Nilai Chi-Square = 15.774, p-value = 0.327**
-
-**Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan genre musik favorit (karena p-value > 0.05). Ini menunjukkan bahwa preferensi genre musik cenderung tidak dipengaruhi oleh perbedaan usia dalam data ini.
-
-**- Hubungan antara Gender dan fav_music_genre**
-
-**Nilai Chi-Square = 32.560, p-value = 0.003**
-
-**Kesimpulan:** Terdapat hubungan yang signifikan antara jenis kelamin dan genre musik favorit (karena p-value < 0.05). Hal ini mengindikasikan bahwa preferensi genre musik cenderung bervariasi antar gender, dengan distribusi genre tertentu lebih dominan pada gender tertentu.
-
-**- Hubungan antara Age dan music_Influencial_mood**
-
-****Nilai Chi-Square = 39.603, p-value = 0.043**
-
-**Kesimpulan:** Terdapat hubungan yang signifikan antara kelompok usia dan suasana hati atau alasan emosional yang memengaruhi seseorang dalam mendengarkan musik. Artinya, motivasi emosional dalam mendengarkan musik (seperti relaksasi, motivasi, atau kesedihan) cenderung berbeda antar kelompok usia.
-
-**- Hubungan antara Age dan Gender**
-
-**Nilai Chi-Square = 8.120, p-value = 0.087**
-
-**Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan gender. Ini menunjukkan bahwa distribusi gender relatif merata di antara berbagai kelompok usia dalam data.
 
 # **D. Data Preparation**
 
-**Encoding Data Kategorikal**
-mengubah data kategorikal (genre) menjadi angka.
+Dalam tahap ini, saya menggunakan dua pendekatan untuk membangun sistem rekomendasi berbasis kemiripan: TF-IDF + Cosine Similarity dan Label Encoding + Jaccard Similarity. Keduanya memiliki pendekatan pemrosesan yang berbeda.
 
-**Normalisasi Data Numerik**
+**Data Preparation Rekomendasi Musik**
+
+1. TF-IDF + Cosine Similarity
+  Tujuan: Mengubah fitur kategorikal menjadi representasi teks untuk dihitung kemiripannya menggunakan TF-IDF dan Cosine Similarity.
+  Langkah:
+  - Menggabungkan semua nilai fitur menjadi satu string per baris (music_feature_text).
+  - TF-IDF akan memberikan bobot pentingnya tiap kata (fitur) berdasarkan frekuensinya.
+
+2.  Label Encoding + Jaccard Similarity
+  Tujuan: Mengubah data kategorikal menjadi format numerik menggunakan LabelEncoder agar dapat dihitung kemiripannya dengan Jaccard Similarity.
+  Langkah:
+  - Setiap nilai unik diubah menjadi angka.
+  - Hasil encoding digabung dalam music_feature_vector.
+
+🔄 Perbandingan Singkat
+Aspek	TF-IDF + Cosine Similarity	Label Encoding + Jaccard
+Representasi Data	Teks (berbobot)	Numerik diskrit
+Teknik Kemiripan	Cosine Similarity	Jaccard Similarity
+Kelebihan	Menangkap bobot penting fitur	Ringan & cocok untuk biner
+Kekurangan	Lebih kompleks	Tidak mempertimbangkan bobot
 
 # E. Modelling
 
