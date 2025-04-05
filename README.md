@@ -147,20 +147,59 @@ Visualisasi & Analisis Univariate pada atribut age, gender, genre podcast favori
 **Multivariate EDA Music**
 
 ![image](https://github.com/user-attachments/assets/ac75ad12-04ff-4d1c-be7b-cad87e198c47)
+Saya melakukan uji anova untuk melihat hubungan antara variabel rating musik dengan genre musik. Hasilnya diperoleh sebagai berikut:
+
+**p-value = 0.000583 (kurang dari 0.05)** menunjukkan bahwa perbedaan rata-rata music_recc_rating antar genre musik (fav_music_genre) adalah signifikan secara statistik.
+
+**F-statistic = 3.83** mengindikasikan bahwa variabilitas antara kelompok genre musik lebih besar dibandingkan dengan variabilitas dalam kelompok.
+
+**Kesimpulan:** Genre musik memiliki pengaruh signifikan terhadap rating rekomendasi musik. 
 
 ![image](https://github.com/user-attachments/assets/34909cb2-5b6e-495e-a036-c84611a68b04)
+Saya melakukan uji chi-square untuk melihat hubungan antara variabel mood dan genre musik. Hasilnya diperoleh sebagai berikut:
 
+**Chi-square statistic: 142.76147694959033
+p-value: 0.00043244726600508274**
+Ada hubungan signifikan antara mood dan genre musik.
 **Multivariate EDA Podcast**
 
 ![image](https://github.com/user-attachments/assets/cda246fa-1941-4c44-b8b7-400a8fe005ac)
 Saya melakukan uji ch-square untuk melihat hubungan antara variabel genre dengan format podcast. Hasilnya diperoleh sebagai berikut:
+
 **Chi-square statistic: 25.81665230286194**
 **p-value: 0.039994571314622494**
 ✅ Dapat disimpulkan ada hubungan yang signifikan antara Genre dan Format Podcast. Analisis ini saya jadikan acuan untuk menentukan atribut yang relevan untuk mengembangkan rekomendasi podcast.
 
 ![image](https://github.com/user-attachments/assets/2d4a2f83-34d3-4c50-b742-46862dda39a1)
 Saya melakukan analisis dengan atribut lainnya juga, salah satunya adalah atribut preferred podcast duration dengan listening frequency. Seperti penjelasan di bawah ini, hubungan antara kedua atribut tersebut kurang relevan.
+
 Dari hasil ANOVA, nilai **p-value (PR(>F)) = 0.176351** menunjukkan bahwa tidak ada hubungan yang signifikan antara preferred podcast duration dan listening frequency pada tingkat signifikansi **0.05 (atau 5%)** . Oleh karena itu, saya menjadikan hasil analisis ini sebagai acuan dalam memutuskan atribut yang akan digunakan pada rekomendasi podcast.
+
+**Hasil uji analisis variabel lainnya:**
+
+**- Hubungan antara Age dan fav_music_genre**
+
+**Nilai Chi-Square = 15.774, p-value = 0.327**
+
+**Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan genre musik favorit (karena p-value > 0.05). Ini menunjukkan bahwa preferensi genre musik cenderung tidak dipengaruhi oleh perbedaan usia dalam data ini.
+
+**- Hubungan antara Gender dan fav_music_genre**
+
+**Nilai Chi-Square = 32.560, p-value = 0.003**
+
+**Kesimpulan:** Terdapat hubungan yang signifikan antara jenis kelamin dan genre musik favorit (karena p-value < 0.05). Hal ini mengindikasikan bahwa preferensi genre musik cenderung bervariasi antar gender, dengan distribusi genre tertentu lebih dominan pada gender tertentu.
+
+**- Hubungan antara Age dan music_Influencial_mood**
+
+****Nilai Chi-Square = 39.603, p-value = 0.043**
+
+**Kesimpulan:** Terdapat hubungan yang signifikan antara kelompok usia dan suasana hati atau alasan emosional yang memengaruhi seseorang dalam mendengarkan musik. Artinya, motivasi emosional dalam mendengarkan musik (seperti relaksasi, motivasi, atau kesedihan) cenderung berbeda antar kelompok usia.
+
+**- Hubungan antara Age dan Gender**
+
+**Nilai Chi-Square = 8.120, p-value = 0.087**
+
+**Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan gender. Ini menunjukkan bahwa distribusi gender relatif merata di antara berbagai kelompok usia dalam data.
 
 # **D. Data Preparation**
 
