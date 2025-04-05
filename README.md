@@ -258,100 +258,142 @@ Analisis dilakukan pada atribut usia, gender, genre podcast favorit, format podc
 - **p-value = 0.176 (> 0.05)** → Tidak ada hubungan signifikan.
 - **Kesimpulan:** Durasi podcast tidak terlalu memengaruhi frekuensi mendengarkan.
 
+### 3. Hasil Uji Lainnya:
+- **Genre Podcast vs Frekuensi Mendengarkan**
+  - ANOVA (p = 0.3616), Kruskal-Wallis (p = 0.5042)
+  - ❌ Tidak ada hubungan signifikan.
 
+- **Host Podcast vs Genre Podcast**
+  - Chi-Square = 14.34, p-value = 0.1580
+  - ❌ Tidak ada hubungan signifikan.
+
+- **Host Podcast vs Format Podcast**
+  - Chi-Square = 8.34, p-value = 0.2140
+  - ❌ Tidak ada hubungan signifikan.
+
+- **Host Podcast vs Kepuasaan Skor**
+  - Chi-Square = 11.04, p-value = 0.1995
+  - ❌ Tidak ada hubungan signifikan.
 
 # **D. Data Preparation**
 
-Dalam tahap ini, saya menggunakan dua pendekatan untuk membangun sistem rekomendasi berbasis kemiripan: TF-IDF + Cosine Similarity dan Label Encoding + Jaccard Similarity. Keduanya memiliki pendekatan pemrosesan yang berbeda.
+Dalam tahap ini, digunakan dua pendekatan utama untuk membangun sistem rekomendasi berbasis kemiripan: **TF-IDF + Cosine Similarity** dan **Label Encoding + Jaccard Similarity**. Keduanya memiliki metode pemrosesan yang berbeda namun saling melengkapi.
 
-**1. TF-IDF + Cosine Similarity**
-   
-   Tujuan: Mengubah fitur kategorikal menjadi representasi teks untuk dihitung kemiripannya menggunakan TF-IDF dan Cosine Similarity.
-  Langkah:
-  Menggabungkan semua nilai fitur menjadi satu string per baris (music_feature_text).
-  TF-IDF akan memberikan bobot pentingnya tiap kata (fitur) berdasarkan frekuensinya.
+---
 
-**2. Label Encoding + Jaccard Similarity**
-   
-   Tujuan: Mengubah data kategorikal menjadi format numerik menggunakan LabelEncoder agar dapat dihitung kemiripannya dengan Jaccard Similarity.
-    Langkah:
-    Setiap nilai unik diubah menjadi angka.
-    Hasil encoding digabung dalam music_feature_vector.
+## 🎵 1. Data Preparation untuk Musik
 
-📝 Kolom yang digunakan dalam pendekatan untuk rekomendasi musik berdasarkan hasil multivariate analysis:
+### a. Pemilihan Fitur
+Dipilih fitur-fitur yang relevan untuk merepresentasikan profil pengguna dan preferensi musiknya:
 
-'Age', 'Gender', 'fav_music_genre', 'music_Influencial_mood', 'music_lis_frequency'
+- `genre_music`
+- `mood_music`
+- `listening_time_music`
+- `age_group`
+- `gender`
+- `music_rating` *(digunakan sebagai target evaluasi)*
 
-📝 Kolom yang digunakan dalam pendekatan untuk rekomendasi podcast berdasarkan hasil multivariate analysis:
+### b. Label Encoding
+Seluruh fitur kategorikal dikonversi menjadi representasi numerik agar dapat digunakan dalam perhitungan Jaccard.
 
-'fav_pod_genre', 'preffered_pod_format'
+### c. Perhitungan Jaccard Similarity
+Menggunakan library `scipy` untuk menghitung **Jaccard Distance**, lalu dikonversi menjadi **Jaccard Similarity** antar pengguna.
 
-⚖️ Perbandingan Pendekatan
+---
 
-🔹 TF-IDF + Cosine Similarity
+## 🎙️ 2. Data Preparation untuk Podcast
 
-  - Mengubah data kategorikal menjadi teks numerik berbobot.
-  - Menggunakan metode Cosine Similarity untuk menghitung kemiripan antar pengguna atau item.
-  - Cocok digunakan ketika fitur memiliki banyak variasi atau nilai yang bersifat deskriptif.
+### a. Pemilihan Fitur
+Fitur yang dipilih mencerminkan kepuasan pengguna terhadap konten podcast:
 
-Keunggulan: mampu menangkap makna semantik dan tingkat kepentingan fitur antar dokumen.
+- `genre_podcast`
+- `mood_podcast`
+- `listening_time_podcast`
+- `age_group`
+- `gender`
+- `pod_variety_satisfaction` *(target evaluasi)*
 
-🔹 Label Encoding + Jaccard Similarity
+### b. Mapping Skor Kepuasan
+Nilai kategorikal pada `pod_variety_satisfaction` diubah menjadi angka untuk keperluan analisis.
 
-  - Mengonversi data kategorikal menjadi kode numerik diskrit.
-  - Menggunakan Jaccard Similarity untuk membandingkan kemiripan berdasarkan kesamaan nilai.
-  - Cocok untuk fitur kategorikal tetap yang tidak memerlukan bobot atau konteks semantik.
+### c. Label Encoding
+Seluruh fitur dikodekan ke bentuk numerik sama seperti pada data musik.
 
-Keunggulan: lebih cepat, ringan, dan efisien untuk dataset yang bersifat tabular.
+### d. Perhitungan Jaccard Similarity
+Menggunakan pendekatan yang sama dengan data musik untuk menghitung kemiripan antar pengguna podcast.
 
+---
 
-# E. Modelling
+# **E. Modelling**
+
 ## 🎧 Modelling Sistem Rekomendasi Musik & Podcast
 
-Sistem rekomendasi dikembangkan menggunakan dua pendekatan berbeda untuk membandingkan kemiripan pengguna berdasarkan atribut kategorikal.
+Sistem rekomendasi dikembangkan menggunakan tiga pendekatan untuk membandingkan kemiripan antar pengguna berdasarkan atribut kategorikal.
 
 ---
 
-### ✅ 1. Pendekatan TF-IDF + Cosine Similarity
+### ✅ 1. TF-IDF + Cosine Similarity
 
-Pendekatan ini menggabungkan fitur-fitur kategorikal (seperti genre musik favorit, mood, usia, dll) menjadi satu teks gabungan per pengguna, lalu dikonversi menjadi vektor numerik berbobot menggunakan TF-IDF.
+Menggabungkan fitur kategorikal menjadi satu representasi teks yang kemudian diolah menggunakan TF-IDF untuk menangkap bobot kata, dan Cosine Similarity untuk mengukur kemiripan antar pengguna.
 
 #### 🔹 Langkah-langkah:
-1. **Gabung fitur** menjadi satu string teks per pengguna.
-2. **TF-IDF Vectorization**: Mengubah teks menjadi vektor numerik dengan `TfidfVectorizer()`.
-3. **Cosine Similarity**: Menghitung tingkat kemiripan antar pengguna berdasarkan arah vektor.
-4. **Fungsi Rekomendasi**: Mengembalikan top-N pengguna paling mirip.
+1. **Gabungkan fitur** menjadi string teks per pengguna.
+2. **TF-IDF Vectorization** menggunakan `TfidfVectorizer()`.
+3. **Cosine Similarity**: Mengukur arah vektor antar pengguna.
+4. **Fungsi**: `get_recommendations_tfidf(index)` untuk top-N rekomendasi pengguna mirip.
 
 ---
 
-### ✅ 2. Pendekatan One-Hot Encoding + Jaccard Similarity
+### ✅ 2. One-Hot Encoding + Jaccard Similarity
 
-Pendekatan ini menggunakan one-hot encoding untuk mengubah data kategorikal menjadi format biner (0/1), lalu menghitung kemiripan berdasarkan seberapa banyak atribut yang sama menggunakan Jaccard similarity.
+Mengubah fitur kategorikal menjadi bentuk biner (0/1) lalu menghitung kemiripan berdasarkan proporsi atribut yang sama antar pengguna.
 
 #### 🔹 Langkah-langkah:
-1. **One-Hot Encoding**: Menggunakan `pd.get_dummies()` untuk mengubah kolom kategorikal menjadi format biner.
-2. **Jaccard Similarity**: Mengukur kemiripan berdasarkan rasio atribut yang sama terhadap atribut yang berbeda.
-3. **Fungsi Rekomendasi**: Mengembalikan top-N pengguna yang paling mirip berdasarkan Jaccard score.
----
-
-### 📊 Perbandingan Kedua Pendekatan
-
-| Aspek                       | TF-IDF + Cosine Similarity        | One-Hot Encoding + Jaccard           |
-|-----------------------------|-----------------------------------|--------------------------------------|
-| Representasi Data           | Teks vektor berbobot TF-IDF       | Matriks biner (0/1)                  |
-| Pengukuran Kemiripan        | Cosine Similarity                 | Jaccard Similarity                   |
-| Kecocokan                   | Kombinasi kategorikal kompleks    | Data kategorikal eksplisit           |
-| Memperhatikan frekuensi     | ✅ Ya                              | ❌ Tidak                              |
-| Interpretasi                | Lebih kontekstual dan fleksibel   | Lebih eksplisit dan langsung         |
+1. **One-Hot Encoding** menggunakan `pd.get_dummies()`.
+2. **Jaccard Similarity**: Mengukur rasio atribut sama dibandingkan gabungan atribut berbeda.
+3. **Fungsi**:
+   - `get_music_recommendations_jaccard(index)`
+   - `get_podcast_recommendations_jaccard(index)`
 
 ---
 
-### 🎯 Kesimpulan
+### ✅ 3. Hybrid Model (TF-IDF + Jaccard Similarity)
 
-- **TF-IDF + Cosine** menangkap makna dan bobot fitur, cocok untuk kombinasi atribut.
-- **One-Hot + Jaccard** lebih simpel dan cepat, cocok jika data sudah eksplisit.
-- Pemilihan metode disesuaikan dengan kompleksitas data dan kebutuhan sistem rekomendasi.
+Menggabungkan hasil kemiripan dari pendekatan TF-IDF dan Jaccard untuk menciptakan sistem rekomendasi yang lebih stabil dan adaptif.
+
+#### 🎯 Tujuan:
+Mengintegrasikan semantic-based TF-IDF dan struktur set-based Jaccard untuk meningkatkan akurasi rekomendasi.
+
+#### ⚙️ Langkah-Langkah:
+1. Hitung skor kemiripan dari:
+   - **TF-IDF (Cosine Similarity)**
+   - **Jaccard Similarity**
+2. Gabungkan kedua skor menggunakan rata-rata sederhana.
+3. **Fungsi**: `get_hybrid_recommendations(index)`
+
 ---
+
+## 📊 Perbandingan Pendekatan
+
+| **Aspek**                   | **TF-IDF + Cosine**                | **One-Hot + Jaccard**               |
+|-----------------------------|------------------------------------|-------------------------------------|
+| Representasi Data           | Teks vektor berbobot (TF-IDF)      | Matriks biner (0/1)                 |
+| Pengukuran Kemiripan        | Cosine Similarity                  | Jaccard Similarity                  |
+| Kecocokan Data              | Atribut kombinasi dan fleksibel    | Data kategorikal eksplisit          |
+| Memperhatikan Frekuensi     | ✅ Ya                               | ❌ Tidak                             |
+| Interpretasi                | Kontekstual dan fleksibel          | Eksplisit dan mudah dipahami        |
+
+---
+
+### 📌 Ringkasan Fungsi Rekomendasi
+
+| **Nama Fungsi**                           | **Deskripsi**                                      |
+|-------------------------------------------|---------------------------------------------------|
+| `get_recommendations_tfidf(index)`        | Rekomendasi berdasarkan TF-IDF + Cosine Similarity |
+| `get_music_recommendations_jaccard(index)`| Rekomendasi musik berbasis Jaccard Similarity      |
+| `get_podcast_recommendations_jaccard(index)`| Rekomendasi podcast berbasis Jaccard Similarity  |
+| `get_hybrid_recommendations(index)`       | Rekomendasi gabungan TF-IDF dan Jaccard            |
+
 
 # F. EVALUASI 
 
