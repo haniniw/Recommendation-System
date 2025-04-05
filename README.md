@@ -212,10 +212,11 @@ Dalam tahap ini, saya menggunakan dua pendekatan untuk membangun sistem rekomend
 **Data Preparation Rekomendasi Musik**
 
 1. TF-IDF + Cosine Similarity
+
   Tujuan: Mengubah fitur kategorikal menjadi representasi teks untuk dihitung kemiripannya menggunakan TF-IDF dan Cosine Similarity.
   Langkah:
-  - Menggabungkan semua nilai fitur menjadi satu string per baris (music_feature_text).
-  - TF-IDF akan memberikan bobot pentingnya tiap kata (fitur) berdasarkan frekuensinya.
+    - Menggabungkan semua nilai fitur menjadi satu string per baris (music_feature_text).
+    - TF-IDF akan memberikan bobot pentingnya tiap kata (fitur) berdasarkan frekuensinya.
 
 2.  Label Encoding + Jaccard Similarity
   Tujuan: Mengubah data kategorikal menjadi format numerik menggunakan LabelEncoder agar dapat dihitung kemiripannya dengan Jaccard Similarity.
