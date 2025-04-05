@@ -54,7 +54,7 @@ Tujuan dari proyek ini dirancang untuk menjawab pertanyaan-pertanyaan di atas, d
 
 Untuk menghasilkan sistem rekomendasi yang optimal, pendekatan **Content-Based Filtering** digunakan, disertai evaluasi menggunakan metrik kuantitatif (*Precision*, *Recall*, *F1-Score*) agar solusi dapat dinilai secara objektif.
 
-Terdapat dua pendekatan utama yang digunakan:
+Terdapat tiga metode yang digunakan:
 
 ### 1. TF-IDF + Cosine Similarity
 - Menggabungkan fitur kategori pengguna menjadi string teks.
@@ -64,6 +64,9 @@ Terdapat dua pendekatan utama yang digunakan:
 ### 2. One-hot Encoding + Jaccard Similarity
 - Mengubah fitur kategori menjadi representasi biner melalui **One-Hot Encoding**.
 - Menggunakan **Jaccard Similarity** untuk mengukur kesamaan antara dua pengguna berdasarkan proporsi atribut yang sama.
+
+### 3. One-hot Encoding + Jaccard Similarity
+- Menggabungkan hasil kemiripan dari pendekatan TF-IDF dan Jaccard untuk menciptakan sistem rekomendasi yang lebih stabil dan adaptif.
 
 ---
 
