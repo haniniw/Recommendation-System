@@ -1,21 +1,35 @@
-# Recommendation System: Model Sistem Rekomendasi Musik dan Podcast pada Aplikasi Spotify
-Oleh: Noer Hanifah Suganda
+# 🎧 Recommendation System: Model Sistem Rekomendasi Musik dan Podcast pada Aplikasi Spotify
+
+**🧑‍💻 Oleh: Noer Hanifah Suganda**
+
 ---
-**Project Overview**
 
-Dalam era digital saat ini, sistem rekomendasi telah menjadi komponen penting dalam platform streaming musik seperti Spotify. Dengan jumlah konten yang terus berkembang, pengguna kerap merasa kewalahan dalam mencari musik atau podcast yang sesuai dengan selera dan mood mereka. Proyek ini bertujuan untuk mengembangkan sistem rekomendasi menggunakan pendekatan Content-Based Filtering.
+## 📌 Project Overview
 
-Latar belakang proyek ini didorong oleh beberapa faktor:
+Dalam era digital saat ini, sistem rekomendasi telah menjadi komponen penting dalam platform streaming musik seperti **Spotify**. Dengan jumlah konten yang terus berkembang, pengguna kerap merasa kewalahan dalam mencari musik atau podcast yang sesuai dengan selera dan mood mereka. 
 
-*   Pertumbuhan Konten Digital: Dengan banyaknya lagu dan podcast yang tersedia, dibutuhkan sistem yang mampu menyaring dan menyesuaikan rekomendasi dengan kebutuhan individu.
+Proyek ini bertujuan untuk mengembangkan sistem rekomendasi menggunakan pendekatan **Content-Based Filtering**.
 
-- Personalisasi Mendalam: Pendekatan content-based filtering memungkinkan pembuatan profil pengguna yang akurat berdasarkan atribut lagu, sehingga rekomendasi yang dihasilkan lebih relevan dan personal.
+---
 
-- Landasan Riset Terkini:
+## 🎯 Latar Belakang
 
-  Beberapa studi terkini mendukung pendekatan ini. Misalnya, Chen et al. (2020) mengusulkan metode pembelajaran representasi audio yang memanfaatkan data riwayat mendengarkan untuk menghasilkan audio embedding yang efektif dalam sistem rekomendasi musik berbasis konten.
+Beberapa faktor utama yang mendorong pengembangan proyek ini antara lain:
+
+### 1. Pertumbuhan Konten Digital
+- Banyaknya jumlah lagu dan podcast yang tersedia di platform streaming menjadikan **pemfilteran konten** sangat penting agar pengguna dapat menemukan konten yang sesuai.
+
+### 2. Personalisasi Mendalam
+- Pendekatan **Content-Based Filtering** memungkinkan pembentukan **profil pengguna** yang lebih akurat berdasarkan atribut lagu atau podcast yang disukai, sehingga rekomendasi yang diberikan menjadi lebih **relevan dan personal**.
+
+### 3. Landasan Riset Terkini
+- Beberapa studi mendukung penggunaan pendekatan berbasis konten, antara lain:
+
+  > **Chen et al. (2020)** mengusulkan metode pembelajaran representasi audio yang memanfaatkan riwayat mendengarkan pengguna untuk menghasilkan **audio embedding** yang efektif dalam sistem rekomendasi musik berbasis konten.
   
-  Selain itu, survei oleh Deldjoo, Schedl, dan Knees (2021) memberikan tinjauan mendalam mengenai evolusi dan tantangan dalam sistem rekomendasi musik yang didorong oleh konten, dengan fokus pada integrasi data sinyal, metadata, dan konten pengguna untuk meningkatkan rekomendasi.
+  > **Deldjoo, Schedl, dan Knees (2021)** memberikan tinjauan komprehensif terkait **evolusi dan tantangan sistem rekomendasi musik**, terutama yang berfokus pada integrasi **data sinyal, metadata, dan interaksi pengguna** untuk meningkatkan relevansi rekomendasi.
+
+---
 
 # **B. Business Understanding**
 
@@ -254,7 +268,7 @@ Keunggulan: lebih cepat, ringan, dan efisien untuk dataset yang bersifat tabular
 
 
 # E. Modelling
-## 🎧 Modelling Sistem Rekomendasi Musik
+## 🎧 Modelling Sistem Rekomendasi Musik & Podcast
 
 Sistem rekomendasi dikembangkan menggunakan dua pendekatan berbeda untuk membandingkan kemiripan pengguna berdasarkan atribut kategorikal.
 
@@ -270,10 +284,6 @@ Pendekatan ini menggabungkan fitur-fitur kategorikal (seperti genre musik favori
 3. **Cosine Similarity**: Menghitung tingkat kemiripan antar pengguna berdasarkan arah vektor.
 4. **Fungsi Rekomendasi**: Mengembalikan top-N pengguna paling mirip.
 
-#### 🔹 Kelebihan:
-- Menangkap bobot/tingkat kepentingan fitur.
-- Cocok untuk data kombinasi kategorikal kompleks.
-
 ---
 
 ### ✅ 2. Pendekatan One-Hot Encoding + Jaccard Similarity
@@ -284,11 +294,6 @@ Pendekatan ini menggunakan one-hot encoding untuk mengubah data kategorikal menj
 1. **One-Hot Encoding**: Menggunakan `pd.get_dummies()` untuk mengubah kolom kategorikal menjadi format biner.
 2. **Jaccard Similarity**: Mengukur kemiripan berdasarkan rasio atribut yang sama terhadap atribut yang berbeda.
 3. **Fungsi Rekomendasi**: Mengembalikan top-N pengguna yang paling mirip berdasarkan Jaccard score.
-
-#### 🔹 Kelebihan:
-- Sederhana dan efisien.
-- Cocok untuk data kategorikal eksplisit.
-
 ---
 
 ### 📊 Perbandingan Kedua Pendekatan
@@ -308,7 +313,7 @@ Pendekatan ini menggunakan one-hot encoding untuk mengubah data kategorikal menj
 - **TF-IDF + Cosine** menangkap makna dan bobot fitur, cocok untuk kombinasi atribut.
 - **One-Hot + Jaccard** lebih simpel dan cepat, cocok jika data sudah eksplisit.
 - Pemilihan metode disesuaikan dengan kompleksitas data dan kebutuhan sistem rekomendasi.
-
+---
 
 # F. EVALUASI 
 
