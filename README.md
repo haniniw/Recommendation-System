@@ -37,9 +37,8 @@ Beberapa faktor utama yang mendorong pengembangan proyek ini antara lain:
 
 Berdasarkan latar belakang dan karakteristik dataset Spotify yang berisi informasi demografis serta preferensi mendengarkan, proyek ini difokuskan untuk menjawab dua pertanyaan utama:
 
-1. **Bagaimana mengembangkan sistem rekomendasi konten musik dan podcast** yang sesuai dengan profil demografis (usia, gender) dan preferensi mendengarkan (genre favorit, waktu mendengarkan, mood) pengguna Spotify?
-2. **Bagaimana mengevaluasi performa model rekomendasi** dalam menyajikan konten yang relevan berdasarkan data pengguna tersebut?
-
+1. **Bagaimana mengembangkan sistem rekomendasi konten musik dan podcast**  
+3. **Apa metode yang paling baik dalam mengembangkan sistem rekomendasi konten musik dan podcast**
 ---
 
 ## 🎯 Goals
@@ -47,12 +46,7 @@ Berdasarkan latar belakang dan karakteristik dataset Spotify yang berisi informa
 Tujuan dari proyek ini dirancang untuk menjawab pertanyaan-pertanyaan di atas, dengan fokus pada:
 
 1. **Mengembangkan sistem rekomendasi yang personal dan relevan:**
-   - Memanfaatkan informasi demografis dan perilaku mendengarkan untuk membentuk profil pengguna yang akurat.
-   - Menyajikan konten yang sesuai dengan preferensi pengguna.
-
-2. **Mengevaluasi performa model rekomendasi:**
-   - Mengukur efektivitas model dengan metrik seperti *Precision* dan *Recall*.
-   - Melakukan analisis mendalam terhadap hasil untuk menjamin relevansi dan meningkatkan kepuasan pengguna.
+2. **Membandingkan beberapa metode untuk menemukan akurasi terbaik dalam mengembangkan sistem rekomendasi konten musik dan podcast**
 
 ---
 
@@ -395,26 +389,102 @@ Mengintegrasikan semantic-based TF-IDF dan struktur set-based Jaccard untuk meni
 | `get_hybrid_recommendations(index)`       | Rekomendasi gabungan TF-IDF dan Jaccard            |
 
 
-# F. EVALUASI 
+# F. Evaluasi
 
+Pada tahap evaluasi ini, digunakan beberapa metrik untuk mengukur performa sistem rekomendasi, yaitu:
 
+---
 
+### 🎯 1. Precision  
+**Definisi:**  
+Proporsi item yang direkomendasikan dan memang relevan dari semua item yang direkomendasikan.
 
+**Interpretasi:**  
+Semakin tinggi precision, semakin *akurat* sistem dalam memberikan rekomendasi yang sesuai selera pengguna.
 
+---
 
+### 🎯 2. Recall  
+**Definisi:**  
+Proporsi item relevan yang berhasil terambil oleh sistem dari semua item relevan yang tersedia.
 
+**Interpretasi:**  
+Semakin tinggi recall, semakin *lengkap* sistem dalam menangkap item yang disukai pengguna.
 
+---
 
+### 🎯 3. F1-Score  
+**Definisi:**  
+Gabungan dari precision dan recall dalam satu metrik (menggunakan rata-rata harmonis).
 
+**Interpretasi:**  
+Metrik ini mengukur keseimbangan antara *akurasi* dan *cakupan* sistem rekomendasi.
 
+---
 
+### 🎯 4. Rata-rata Selisih Rating Rekomendasi  
+**Definisi:**  
+Mengukur perbedaan antara rating awal (sebelum rekomendasi) dengan rating dari item yang direkomendasikan.
 
+**Interpretasi Nilai:**
+- Nilai **negatif** → Rekomendasi cenderung lebih rendah dari preferensi awal.  
+- Nilai **mendekati 0** → Rekomendasi cenderung sesuai dengan preferensi awal.  
+- Nilai **positif** → Rekomendasi cenderung lebih tinggi (jarang terjadi).
 
+---
 
+### 🎯 5. Rata-rata Proporsi Rekomendasi dengan Rating Lebih Baik/Sama  
+**Definisi:**  
+Mengukur persentase rekomendasi yang memiliki rating sama atau lebih tinggi dibanding item yang disukai pengguna sebelumnya.
 
+**Interpretasi Nilai:**
+- Semakin tinggi nilai (mendekati 100%), sistem semakin *relevan dan aman*.  
+- Jika proporsi rendah, banyak rekomendasi tidak sesuai preferensi pengguna.
 
+---
 
+![image](https://github.com/user-attachments/assets/d4fb989d-31b1-43bc-9a77-f9b09057d5d3)
 
+## 🔍 1. TF-IDF vs Jaccard vs Hybrid – Musik  
+### 📈 Evaluasi Umum:
+![image](https://github.com/user-attachments/assets/8e357346-b95c-4405-acd8-ae6ceedfad79)
 
+- Semua metode memberikan rekomendasi yang relevan (Precision = 1.00 dan proporsi lebih baik/sama = 100%).
 
+---
 
+## 🔍 2. TF-IDF vs Jaccard vs Hybrid – Podcast  
+### 📈 Evaluasi Umum:
+![image](https://github.com/user-attachments/assets/a965ca5d-60c9-49ec-a92d-f69e3b65ec76)
+
+- Semua metode menunjukkan performa tinggi (Precision = 1.00, Proporsi ≥ 100%).  
+- **Hybrid** menunjukkan keunggulan karena:
+  - Rata-rata selisih skor paling kecil.
+  - Recall dan F1-Score paling tinggi (meski selisihnya kecil).
+
+---
+
+## 🎯 Goal 1: Mengembangkan Sistem Rekomendasi yang Personal dan Relevan
+
+Sistem rekomendasi berhasil dikembangkan melalui pendekatan berikut:
+- **TF-IDF + Cosine Similarity**: cocok untuk konten berbasis teks.
+- **Label Encoding + Jaccard Similarity**: efektif untuk fitur kategorikal.
+- **Hybrid (TF-IDF + Jaccard)**: menggabungkan keunggulan dari keduanya.
+
+Sistem mampu merekomendasikan konten dengan rating yang sama atau lebih tinggi dari preferensi awal pengguna (≥ 60%).  
+Precision tinggi (1.00) menunjukkan sistem mampu menghindari rekomendasi yang tidak relevan.
+
+---
+
+## 🎯 Goal 2: Membandingkan Metode untuk Menemukan Akurasi Terbaik
+
+- **Hybrid (TF-IDF + Jaccard)** terbukti sebagai metode paling unggul untuk **podcast**.  
+- Untuk **musik**, hybrid juga menunjukkan performa lebih baik:
+  - Rata-rata selisih rating lebih kecil (-0.155).
+  - Namun, F1-Score masih setara dengan metode lain (0.69).
+
+# Reference
+
+Deldjoo, Y., Schedl, M., & Knees, P. (2021). Content-driven Music Recommendation: Evolution, State of the Art, and Challenges [Preprint].
+
+Chen, K., Liang, B., Ma, X., & Gu, M. (2020). Learning Audio Embeddings with User Listening Data for Content-based Music Recommendation [Preprint].
