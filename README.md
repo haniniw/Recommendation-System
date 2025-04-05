@@ -105,29 +105,43 @@ Berikut adalah kolom-kolom yang digunakan pada masing-masing dataset
 ![image](https://github.com/user-attachments/assets/3dbd665f-0afb-49fc-8105-09f7ef8055f4)
 
 
-**Exploratory Data Analysis (EDA) Musik**
+**Exploratory Data Analysis Univariate Musik**
 
 Visualisasi & Analisis Univariate pada atribut age, gender, genre musik favorit, rating rekomendasi, dan frekuensi mendengarkan:
 
-![image](https://github.com/user-attachments/assets/d640a62a-b964-4e06-9fd2-ca781bff8077)
+1. Mayoritas pengguna berada pada rentang usia produktif 20–35 tahun (204 orang), menunjukkan dominasi pendengar musik dari kalangan dewasa muda.
+![image](https://github.com/user-attachments/assets/eb2d75ad-5066-486d-9662-1e8357e1d03c)
 
-![image](https://github.com/user-attachments/assets/71b78c70-ca58-4d42-9169-bda4d9d2d408)
+2. Sebagian besar pengguna adalah perempuan (190 orang), jauh lebih banyak dibanding laki-laki (40) dan lainnya (6)
+![image](https://github.com/user-attachments/assets/0ff429e5-fdd2-4bfb-bab7-18f97861b72b)
 
-![image](https://github.com/user-attachments/assets/b83c2b5b-15d0-4e29-9717-e863c4dcf983)
+3. Musik paling sering diasosiasikan dengan relaksasi dan pengurang stres (92 orang), diikuti oleh kombinasi relaksasi dan motivasi. Ini menandakan musik dipakai sebagai alat coping dan regulasi emosi.
 
-![image](https://github.com/user-attachments/assets/65ba0522-7ae4-430d-a3a4-880a5f15ebac)
+4. Sebagian besar pengguna memberikan rating 3 dan 4 (total 158), yang menunjukkan tingkat kepuasan sedang hingga tinggi terhadap rekomendasi musik.
+![image](https://github.com/user-attachments/assets/2861b722-c0ca-4e3e-9048-b266560ae031)
 
-![image](https://github.com/user-attachments/assets/cdaadb05-58ab-4889-903b-d56dfa766c8a)
+5. Genre paling disukai adalah Melody (139 orang), diikuti Pop dan Classical. Genre seperti Rock dan Kpop kurang populer dalam dataset ini.
+![image](https://github.com/user-attachments/assets/8f5bcfbe-0856-4f36-b370-de9f8cd81d2f)
 
-**Exploratory Data Analysis (EDA) Podcast**
+6. Konteks paling umum untuk mendengarkan musik adalah saat bepergian dan waktu luang, baik secara tunggal maupun kombinasi keduanya. 
+![image](https://github.com/user-attachments/assets/3623e4ae-6b9a-4b08-890f-7437fa70c6f5)
+
+   
+**Exploratory Data Analysis Univariate Podcast**
 
 Visualisasi & Analisis Univariate pada atribut age, gender, genre podcast favorit, format podcast favorit, dan rating kepuasan variasi podcast:
 
-![image](https://github.com/user-attachments/assets/7c0db44c-70cb-4ebd-957f-91a10aaeccbf)
+1. Pengguna podcast juga sama seperti pengguna musik berada di mayoritas kelompok usia 20-35 walaupun jumlahnya lebih sedikit hanya 61 pengguna. Hal ini dipengaruhi oleh dataset podcast yang lebih sedikit dibandingkan dengan dataset musik.
+![image](https://github.com/user-attachments/assets/b158b36f-674d-460a-98f8-f2d38f78832c)
 
-![image](https://github.com/user-attachments/assets/5a0125b9-e341-497d-afb6-efab79da5c34)
+3. Mayoritas pengguna podcast juga adalah Female (80) dibandingkan dengan Male (18) dan Others (6).
+![image](https://github.com/user-attachments/assets/8f91ad54-1a89-4fb9-ae20-e4cf4a29fa4e)
 
-![image](https://github.com/user-attachments/assets/68c4ebec-c3d6-4aed-87cb-1b42fb6809a9)
+4. Genre podcast favorit didominasi oleh Health and Fitness (41), Lifestyle and Health (25), dan Sports (23).
+![image](https://github.com/user-attachments/assets/a8c9ba4c-20d0-47e3-984f-d8ec13b8c91a)
+
+5. Format podcast yang disukai adalah Story telling (44) dan Interview (36), yang menunjukkan preferensi terhadap konten naratif dan interaksi dengan narasumber.
+![image](https://github.com/user-attachments/assets/67cb7772-031d-4629-a03a-22216b584e9f)
 
 
 **Multivariate EDA Music**
