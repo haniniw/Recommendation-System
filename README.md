@@ -209,30 +209,44 @@ Dari hasil ANOVA, nilai **p-value (PR(>F)) = 0.176351** menunjukkan bahwa tidak 
 
 Dalam tahap ini, saya menggunakan dua pendekatan untuk membangun sistem rekomendasi berbasis kemiripan: TF-IDF + Cosine Similarity dan Label Encoding + Jaccard Similarity. Keduanya memiliki pendekatan pemrosesan yang berbeda.
 
-**Data Preparation Rekomendasi Musik**
-
-1. TF-IDF + Cosine Similarity
-
-  Tujuan: Mengubah fitur kategorikal menjadi representasi teks untuk dihitung kemiripannya menggunakan TF-IDF dan Cosine Similarity.
+**1. TF-IDF + Cosine Similarity**
+   Tujuan: Mengubah fitur kategorikal menjadi representasi teks untuk dihitung kemiripannya menggunakan TF-IDF dan Cosine Similarity.
   Langkah:
-    - Menggabungkan semua nilai fitur menjadi satu string per baris (music_feature_text).
-    - TF-IDF akan memberikan bobot pentingnya tiap kata (fitur) berdasarkan frekuensinya.
+  Menggabungkan semua nilai fitur menjadi satu string per baris (music_feature_text).
+  TF-IDF akan memberikan bobot pentingnya tiap kata (fitur) berdasarkan frekuensinya.
 
-2.  Label Encoding + Jaccard Similarity
-  Tujuan: Mengubah data kategorikal menjadi format numerik menggunakan LabelEncoder agar dapat dihitung kemiripannya dengan Jaccard Similarity.
-  Langkah:
-  - Setiap nilai unik diubah menjadi angka.
-  - Hasil encoding digabung dalam music_feature_vector.
+**2. Label Encoding + Jaccard Similarity**
+   Tujuan: Mengubah data kategorikal menjadi format numerik menggunakan LabelEncoder agar dapat dihitung kemiripannya dengan Jaccard Similarity.
+    Langkah:
+    Setiap nilai unik diubah menjadi angka.
+    Hasil encoding digabung dalam music_feature_vector.
 
-🔄 Perbandingan Singkat
-Aspek	TF-IDF + Cosine Similarity	Label Encoding + Jaccard
-Representasi Data	Teks (berbobot)	Numerik diskrit
-Teknik Kemiripan	Cosine Similarity	Jaccard Similarity
-Kelebihan	Menangkap bobot penting fitur	Ringan & cocok untuk biner
-Kekurangan	Lebih kompleks	Tidak mempertimbangkan bobot
+📝 Kolom yang digunakan dalam pendekatan untuk rekomendasi musik berdasarkan hasil multivariate analysis:
+'Age', 'Gender', 'fav_music_genre', 'music_Influencial_mood', 'music_lis_frequency'
+
+📝 Kolom yang digunakan dalam pendekatan untuk rekomendasi podcast berdasarkan hasil multivariate analysis:
+'fav_pod_genre', 'preffered_pod_format'
+
+⚖️ Perbandingan Pendekatan
+🔹 TF-IDF + Cosine Similarity
+
+  - Mengubah data kategorikal menjadi teks numerik berbobot.
+  - Menggunakan metode Cosine Similarity untuk menghitung kemiripan antar pengguna atau item.
+  - Cocok digunakan ketika fitur memiliki banyak variasi atau nilai yang bersifat deskriptif.
+
+Keunggulan: mampu menangkap makna semantik dan tingkat kepentingan fitur antar dokumen.
+
+🔹 Label Encoding + Jaccard Similarity
+
+  - Mengonversi data kategorikal menjadi kode numerik diskrit.
+  - Menggunakan Jaccard Similarity untuk membandingkan kemiripan berdasarkan kesamaan nilai.
+  - Cocok untuk fitur kategorikal tetap yang tidak memerlukan bobot atau konteks semantik.
+
+Keunggulan: lebih cepat, ringan, dan efisien untuk dataset yang bersifat tabular.
+
 
 # E. Modelling
-
+  Tujuan: Mengonversi setiap kolom kategorikal ke nilai numerik menggunakan Label Encoding, lalu digabungkan sebagai string untuk keperluan penghitungan kemiripan menggunakan Jaccard Similarity.
 
 **Membentuk Feature Vector**
 Menggabungkan semua nilai fitur kategorikal menjadi satu string per baris.
