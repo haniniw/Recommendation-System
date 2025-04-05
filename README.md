@@ -167,27 +167,30 @@ Ada hubungan signifikan antara mood dan genre musik.
 
 **- Hubungan antara Age dan fav_music_genre**
 
-  **- Nilai Chi-Square = 15.774, p-value = 0.327**
+  **Nilai Chi-Square = 15.774, p-value = 0.327**
 
   **Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan genre musik favorit (karena p-value > 0.05). Ini menunjukkan bahwa preferensi genre musik cenderung tidak dipengaruhi oleh perbedaan usia dalam data ini.
 
+
 **- Hubungan antara Gender dan fav_music_genre**
 
-  **- Nilai Chi-Square = 32.560, p-value = 0.003**
+  **Nilai Chi-Square = 32.560, p-value = 0.003**
 
-  **- Kesimpulan:** Terdapat hubungan yang signifikan antara jenis kelamin dan genre musik favorit (karena p-value < 0.05). Hal ini mengindikasikan bahwa preferensi genre musik cenderung bervariasi antar gender, dengan distribusi genre tertentu lebih dominan pada gender tertentu.
+  **Kesimpulan:** Terdapat hubungan yang signifikan antara jenis kelamin dan genre musik favorit (karena p-value < 0.05). Hal ini mengindikasikan bahwa preferensi genre musik cenderung bervariasi antar gender, dengan distribusi genre tertentu lebih dominan pada gender tertentu.
+
 
 **- Hubungan antara Age dan music_Influencial_mood**
 
-  **- Nilai Chi-Square = 39.603, p-value = 0.043**
+  **Nilai Chi-Square = 39.603, p-value = 0.043**
 
-  **- Kesimpulan:** Terdapat hubungan yang signifikan antara kelompok usia dan suasana hati atau alasan emosional yang memengaruhi seseorang dalam mendengarkan musik. Artinya, motivasi emosional dalam mendengarkan musik (seperti relaksasi, motivasi, atau kesedihan) cenderung berbeda antar kelompok usia.
+  **Kesimpulan:** Terdapat hubungan yang signifikan antara kelompok usia dan suasana hati atau alasan emosional yang memengaruhi seseorang dalam mendengarkan musik. Artinya, motivasi emosional dalam mendengarkan musik (seperti relaksasi, motivasi, atau kesedihan) cenderung berbeda antar kelompok usia.
+
 
 **- Hubungan antara Age dan Gender**
 
-  **- Nilai Chi-Square = 8.120, p-value = 0.087**
+  **Nilai Chi-Square = 8.120, p-value = 0.087**
 
-  **- Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan gender. 
+  **Kesimpulan:** Tidak terdapat hubungan yang signifikan antara kelompok usia dan gender. 
 
 
 **Multivariate EDA Podcast**
@@ -210,24 +213,29 @@ Dari hasil ANOVA, nilai **p-value (PR(>F)) = 0.176351** menunjukkan bahwa tidak 
 Dalam tahap ini, saya menggunakan dua pendekatan untuk membangun sistem rekomendasi berbasis kemiripan: TF-IDF + Cosine Similarity dan Label Encoding + Jaccard Similarity. Keduanya memiliki pendekatan pemrosesan yang berbeda.
 
 **1. TF-IDF + Cosine Similarity**
+   
    Tujuan: Mengubah fitur kategorikal menjadi representasi teks untuk dihitung kemiripannya menggunakan TF-IDF dan Cosine Similarity.
   Langkah:
   Menggabungkan semua nilai fitur menjadi satu string per baris (music_feature_text).
   TF-IDF akan memberikan bobot pentingnya tiap kata (fitur) berdasarkan frekuensinya.
 
 **2. Label Encoding + Jaccard Similarity**
+   
    Tujuan: Mengubah data kategorikal menjadi format numerik menggunakan LabelEncoder agar dapat dihitung kemiripannya dengan Jaccard Similarity.
     Langkah:
     Setiap nilai unik diubah menjadi angka.
     Hasil encoding digabung dalam music_feature_vector.
 
 📝 Kolom yang digunakan dalam pendekatan untuk rekomendasi musik berdasarkan hasil multivariate analysis:
+
 'Age', 'Gender', 'fav_music_genre', 'music_Influencial_mood', 'music_lis_frequency'
 
 📝 Kolom yang digunakan dalam pendekatan untuk rekomendasi podcast berdasarkan hasil multivariate analysis:
+
 'fav_pod_genre', 'preffered_pod_format'
 
 ⚖️ Perbandingan Pendekatan
+
 🔹 TF-IDF + Cosine Similarity
 
   - Mengubah data kategorikal menjadi teks numerik berbobot.
@@ -246,17 +254,61 @@ Keunggulan: lebih cepat, ringan, dan efisien untuk dataset yang bersifat tabular
 
 
 # E. Modelling
-  Tujuan: Mengonversi setiap kolom kategorikal ke nilai numerik menggunakan Label Encoding, lalu digabungkan sebagai string untuk keperluan penghitungan kemiripan menggunakan Jaccard Similarity.
+## 🎧 Modelling Sistem Rekomendasi Musik
 
-**Membentuk Feature Vector**
-Menggabungkan semua nilai fitur kategorikal menjadi satu string per baris.
-Digunakan sebagai representasi profil item (lagu/podcast) yang akan dibandingkan antar item.
+Sistem rekomendasi dikembangkan menggunakan dua pendekatan berbeda untuk membandingkan kemiripan pengguna berdasarkan atribut kategorikal.
 
-**Jaccard Similarity**
-menghitung seberapa mirip dua item berdasarkan fitur kategorikal.
-Output: matriks kemiripan antar item (lagu ke lagu / podcast ke podcast).
+---
 
-**Fungsi Rekomendasi top-N**
+### ✅ 1. Pendekatan TF-IDF + Cosine Similarity
+
+Pendekatan ini menggabungkan fitur-fitur kategorikal (seperti genre musik favorit, mood, usia, dll) menjadi satu teks gabungan per pengguna, lalu dikonversi menjadi vektor numerik berbobot menggunakan TF-IDF.
+
+#### 🔹 Langkah-langkah:
+1. **Gabung fitur** menjadi satu string teks per pengguna.
+2. **TF-IDF Vectorization**: Mengubah teks menjadi vektor numerik dengan `TfidfVectorizer()`.
+3. **Cosine Similarity**: Menghitung tingkat kemiripan antar pengguna berdasarkan arah vektor.
+4. **Fungsi Rekomendasi**: Mengembalikan top-N pengguna paling mirip.
+
+#### 🔹 Kelebihan:
+- Menangkap bobot/tingkat kepentingan fitur.
+- Cocok untuk data kombinasi kategorikal kompleks.
+
+---
+
+### ✅ 2. Pendekatan One-Hot Encoding + Jaccard Similarity
+
+Pendekatan ini menggunakan one-hot encoding untuk mengubah data kategorikal menjadi format biner (0/1), lalu menghitung kemiripan berdasarkan seberapa banyak atribut yang sama menggunakan Jaccard similarity.
+
+#### 🔹 Langkah-langkah:
+1. **One-Hot Encoding**: Menggunakan `pd.get_dummies()` untuk mengubah kolom kategorikal menjadi format biner.
+2. **Jaccard Similarity**: Mengukur kemiripan berdasarkan rasio atribut yang sama terhadap atribut yang berbeda.
+3. **Fungsi Rekomendasi**: Mengembalikan top-N pengguna yang paling mirip berdasarkan Jaccard score.
+
+#### 🔹 Kelebihan:
+- Sederhana dan efisien.
+- Cocok untuk data kategorikal eksplisit.
+
+---
+
+### 📊 Perbandingan Kedua Pendekatan
+
+| Aspek                       | TF-IDF + Cosine Similarity        | One-Hot Encoding + Jaccard           |
+|-----------------------------|-----------------------------------|--------------------------------------|
+| Representasi Data           | Teks vektor berbobot TF-IDF       | Matriks biner (0/1)                  |
+| Pengukuran Kemiripan        | Cosine Similarity                 | Jaccard Similarity                   |
+| Kecocokan                   | Kombinasi kategorikal kompleks    | Data kategorikal eksplisit           |
+| Memperhatikan frekuensi     | ✅ Ya                              | ❌ Tidak                              |
+| Interpretasi                | Lebih kontekstual dan fleksibel   | Lebih eksplisit dan langsung         |
+
+---
+
+### 🎯 Kesimpulan
+
+- **TF-IDF + Cosine** menangkap makna dan bobot fitur, cocok untuk kombinasi atribut.
+- **One-Hot + Jaccard** lebih simpel dan cepat, cocok jika data sudah eksplisit.
+- Pemilihan metode disesuaikan dengan kompleksitas data dan kebutuhan sistem rekomendasi.
+
 
 # F. EVALUASI 
 
