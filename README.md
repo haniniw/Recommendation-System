@@ -33,92 +33,120 @@ Beberapa faktor utama yang mendorong pengembangan proyek ini antara lain:
 
 # **B. Business Understanding**
 
-**Problem Statements**
+## 🧩 Problem Statements
 
-Berdasarkan uraian latar belakang dan karakteristik dataset Spotify yang berisi informasi demografis dan preferensi mendengarkan, rumusan masalah yang akan dijawab dalam proyek ini adalah sebagai berikut:
+Berdasarkan latar belakang dan karakteristik dataset Spotify yang berisi informasi demografis serta preferensi mendengarkan, proyek ini difokuskan untuk menjawab dua pertanyaan utama:
 
-1.   Bagaimana mengembangkan sistem rekomendasi konten musik dan podcast yang sesuai dengan profil demografis (usia, gender) dan preferensi mendengarkan (genre favorit, waktu mendengarkan, mood) pengguna Spotify
-2. Bagaimana mengevaluasi performa model rekomendasi dalam menyajikan konten yang relevan berdasarkan data demografis dan preferensi mendengarkan pengguna Spotify?
+1. **Bagaimana mengembangkan sistem rekomendasi konten musik dan podcast** yang sesuai dengan profil demografis (usia, gender) dan preferensi mendengarkan (genre favorit, waktu mendengarkan, mood) pengguna Spotify?
+2. **Bagaimana mengevaluasi performa model rekomendasi** dalam menyajikan konten yang relevan berdasarkan data pengguna tersebut?
 
-**Goals**
+---
 
-Berdasarkan rumusan masalah tersebut, tujuan dari proyek penelitian ini adalah:
+## 🎯 Goals
 
-1. Mengembangkan sistem rekomendasi konten musik dan podcast yang personal dan relevan:
-Mengetahui cara memanfaatkan informasi demografis dan perilaku mendengarkan untuk membangun profil pengguna yang akurat sehingga dapat menyajikan rekomendasi yang sesuai.
+Tujuan dari proyek ini dirancang untuk menjawab pertanyaan-pertanyaan di atas, dengan fokus pada:
 
-2. Mengevaluasi performa model rekomendasi:
-Mengukur efektivitas sistem rekomendasi yang dibangun melalui metrik evaluasi yang tepat (misalnya, Precisiondan  Recall), serta melakukan analisis mendalam terhadap hasil yang diperoleh untuk memastikan relevansi dan kepuasan pengguna.
+1. **Mengembangkan sistem rekomendasi yang personal dan relevan:**
+   - Memanfaatkan informasi demografis dan perilaku mendengarkan untuk membentuk profil pengguna yang akurat.
+   - Menyajikan konten yang sesuai dengan preferensi pengguna.
 
-**Solution Statement**
+2. **Mengevaluasi performa model rekomendasi:**
+   - Mengukur efektivitas model dengan metrik seperti *Precision* dan *Recall*.
+   - Melakukan analisis mendalam terhadap hasil untuk menjamin relevansi dan meningkatkan kepuasan pengguna.
 
-Untuk mengembangkan sistem rekomendasi konten musik dan podcast yang personal dan relevan, saya menggunakan pendekatan Content-Based Filtering dengan evaluasi metrik terukur (Precision, F-1 score, dan Recall) sehingga solusi yang dihasilkan dapat dinilai secara objektif.
+---
 
-1. TF-IDF + Cosine Similarity 
-Pada pendekatan pertama, fitur kategori pengguna dikombinasikan menjadi teks dan diubah menjadi representasi numerik menggunakan TF-IDF (Term Frequency-Inverse Document Frequency).
-Kemudian, cosine similarity digunakan untuk mengukur kemiripan antara pengguna berdasarkan arah vektor fitur mereka.
+## 💡 Solution Statement
 
-2. One-hot Encoding + Jaccard Similarity
-Pada pendekatan kedua, fitur kategorikal yang telah  diubah menjadi representasi biner menggunakan one-hot encoding, digunakan Jaccard similarity untuk mengukur seberapa mirip dua pengguna berdasarkan proporsi atribut yang sama dari total atribut unik.
+Untuk menghasilkan sistem rekomendasi yang optimal, pendekatan **Content-Based Filtering** digunakan, disertai evaluasi menggunakan metrik kuantitatif (*Precision*, *Recall*, *F1-Score*) agar solusi dapat dinilai secara objektif.
+
+Terdapat dua pendekatan utama yang digunakan:
+
+### 1. TF-IDF + Cosine Similarity
+- Menggabungkan fitur kategori pengguna menjadi string teks.
+- Mengubahnya menjadi representasi numerik menggunakan **TF-IDF (Term Frequency-Inverse Document Frequency)**.
+- Menggunakan **Cosine Similarity** untuk mengukur kemiripan antar pengguna berdasarkan arah vektor fitur.
+
+### 2. One-hot Encoding + Jaccard Similarity
+- Mengubah fitur kategori menjadi representasi biner melalui **One-Hot Encoding**.
+- Menggunakan **Jaccard Similarity** untuk mengukur kesamaan antara dua pengguna berdasarkan proporsi atribut yang sama.
+
+---
 
 # **C. Data Understanding**
 
-**EDA - Deskripsi Variabel**
-Sumber: https://www.kaggle.com/code/arvindkhoda/spotify-user-behavior-dataset
+## 🗃️ EDA - Deskripsi Variabel
 
-Dataset ini memiliki 520 baris data dan 20 kolom. Berikut adalah deskripsi masing-masing kolom:
+**Sumber Dataset:** [Kaggle - Spotify User Behavior Dataset](https://www.kaggle.com/code/arvindkhoda/spotify-user-behavior-dataset)
 
-1. Age – Kelompok usia pengguna.
-2. Gender – Jenis kelamin pengguna.
-3. spotify_usage_period – Lama waktu penggunaan Spotify.
-4. spotify_listening_device – Perangkat utama yang digunakan untuk mendengarkan Spotify.
-5. spotify_subscription_plan – Jenis paket langganan Spotify yang digunakan.
-6. premium_sub_willingness – Kesediaan pengguna untuk berlangganan premium.
-7. preffered_premium_plan – Paket premium yang diinginkan pengguna (jika ada).
-8. preferred_listening_content – Jenis konten utama yang sering didengarkan (musik/podcast).
-9. fav_music_genre – Genre musik favorit pengguna.
-10. music_time_slot – Waktu favorit untuk mendengarkan musik.
-11. music_Influencial_mood – Mood atau situasi yang memengaruhi pilihan musik.
-12. music_lis_frequency – Frekuensi mendengarkan musik.
-13. music_expl_method – Cara pengguna menemukan musik baru.
-14. music_recc_rating – Penilaian pengguna terhadap rekomendasi musik dari Spotify.
-15. pod_lis_frequency – Frekuensi mendengarkan podcast.
-16. fav_pod_genre – Genre podcast favorit pengguna.
-17. preffered_pod_format – Format podcast yang lebih disukai.
-18. pod_host_preference – Preferensi pengguna terhadap host podcast (terkenal atau tidak).
-19. preffered_pod_duration – Durasi podcast yang lebih disukai (pendek atau panjang).
-20. pod_variety_satisfaction – Tingkat kepuasan terhadap variasi dan ketersediaan podcast di Spotify
+Dataset terdiri dari **520 baris data** dan **20 kolom**, yang mencakup informasi sebagai berikut:
 
-**Kondisi Data**
+| No | Kolom                     | Deskripsi                                                                 |
+|----|---------------------------|---------------------------------------------------------------------------|
+| 1  | Age                       | Kelompok usia pengguna                                                    |
+| 2  | Gender                    | Jenis kelamin pengguna                                                    |
+| 3  | spotify_usage_period      | Lama penggunaan Spotify                                                   |
+| 4  | spotify_listening_device  | Perangkat utama untuk mendengarkan Spotify                                |
+| 5  | spotify_subscription_plan | Jenis langganan Spotify                                                   |
+| 6  | premium_sub_willingness   | Kesediaan pengguna untuk berlangganan premium                             |
+| 7  | preffered_premium_plan    | Paket premium yang diinginkan                                             |
+| 8  | preferred_listening_content | Jenis konten yang sering didengarkan (musik/podcast)                    |
+| 9  | fav_music_genre           | Genre musik favorit                                                       |
+| 10 | music_time_slot           | Waktu favorit mendengarkan musik                                          |
+| 11 | music_Influencial_mood    | Mood/situasi yang memengaruhi pilihan musik                               |
+| 12 | music_lis_frequency       | Frekuensi mendengarkan musik                                              |
+| 13 | music_expl_method         | Cara menemukan musik baru                                                 |
+| 14 | music_recc_rating         | Penilaian pengguna terhadap rekomendasi musik Spotify                     |
+| 15 | pod_lis_frequency         | Frekuensi mendengarkan podcast                                            |
+| 16 | fav_pod_genre             | Genre podcast favorit                                                     |
+| 17 | preffered_pod_format      | Format podcast yang lebih disukai                                         |
+| 18 | pod_host_preference       | Preferensi terhadap host podcast                                          |
+| 19 | preffered_pod_duration    | Durasi podcast yang lebih disukai                                         |
+| 20 | pod_variety_satisfaction  | Tingkat kepuasan variasi dan ketersediaan podcast di Spotify             |
 
-- **Duplikasi:** Terdapat 1 baris duplikat yang dihapus.
-- **Missing Values:** 
-  - Age: Terdapat 4 nilai yang hilang.
-  - preffered_premium_plan: Terdapat 207 nilai yang hilang.
-  - fav_pod_genre: Terdapat 147 nilai yang hilang.
-  - preffered_pod_format: Terdapat 139 nilai yang hilang.
-  - pod_host_preference: Terdapat 140 nilai yang hilang.
-  - preffered_pod_duration: Terdapat 128 nilai yang hilang.
+---
 
-  Karena baris yang mempunyai missing value terlalu banyak, dan tidak semua variabel akan digunakan, maka saya tidak akan menghapus missing values dari variabel preffered_premium_plan yang tidak relevan dalam menjawab goals agar data yang berkurang tidak terlalu banyak.
+## 🧹 Kondisi Data
 
-- **Tipe Data:** Sebagian besar kolom bertipe object yang mengandung nilai kategorikal dengan jumlah kategori yang terbatas, saya mengubahnya ke tipe data category supaya meningkatkan efisiensi memori dan mempermudah analisis.
+- **Duplikasi:** Terdapat 1 baris duplikat yang telah dihapus.
+- **Missing Values:**
 
-- **Outliers:** Tidak dilakukan penanganan outliers karena tipe data kategorik dan kolom numerik hanya satu, yaitu music_recc_rating yang hanya direntang 1-5 akan berguna untuk kebutuhan sistem rekomendasi data.
+| Kolom                    | Jumlah Nilai Hilang |
+|--------------------------|---------------------|
+| Age                      | 4                   |
+| preffered_premium_plan   | 207                 |
+| fav_pod_genre            | 147                 |
+| preffered_pod_format     | 139                 |
+| pod_host_preference      | 140                 |
+| preffered_pod_duration   | 128                 |
 
-**Membagi Dataset Rekomendasi Musik dan Rekomendasi Podcast**
+> Variabel `preffered_premium_plan` dianggap tidak relevan terhadap tujuan model, sehingga tidak diprioritaskan dalam penanganan missing value agar tidak terlalu banyak data yang hilang.
 
-Sesuai dengan goals untuk mengembangkan rekomendasi musik dan podcast, dataset dibuat secara terpisah dengan masing-masing isi kolom yang relevan berdasarkan kebutuhan.
+- **Tipe Data:**  
+  Sebagian besar kolom bertipe *object* dengan nilai kategori terbatas. Kolom-kolom ini diubah menjadi tipe *category* untuk efisiensi memori dan kemudahan analisis.
 
-Berikut adalah kolom-kolom yang digunakan pada masing-masing dataset
+- **Outliers:**  
+  Tidak dilakukan penanganan outliers karena:
+  - Sebagian besar kolom adalah kategorikal.
+  - Satu-satunya kolom numerik, `music_recc_rating`, memiliki nilai pada rentang 1–5 dan tetap relevan digunakan untuk evaluasi model rekomendasi.
 
-**Dataset musik**
-![image](https://github.com/user-attachments/assets/110dd753-2518-4154-87de-f9597ea1af11)
+---
 
+## 📂 Pemisahan Dataset: Musik dan Podcast
 
-**Dataset podcast**
-![image](https://github.com/user-attachments/assets/ccdb045f-6629-4715-a7b8-b0c451645a56)
+Untuk mendukung pengembangan dua sistem rekomendasi yang berbeda (musik dan podcast), dataset dipisah berdasarkan atribut relevan.
 
+### 📀 Dataset Musik
+
+Berisi kolom-kolom yang berkaitan dengan preferensi musik:
+![Dataset Musik](https://github.com/user-attachments/assets/110dd753-2518-4154-87de-f9597ea1af11)
+
+### 🎙️ Dataset Podcast
+
+Berisi kolom-kolom yang berkaitan dengan preferensi podcast:
+![Dataset Podcast](https://github.com/user-attachments/assets/ccdb045f-6629-4715-a7b8-b0c451645a56)
+
+---
 
 **Exploratory Data Analysis Univariate Musik**
 
